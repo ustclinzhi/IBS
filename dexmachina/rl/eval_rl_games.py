@@ -1,0 +1,355 @@
+import os 
+import yaml
+import genesis as gs
+import numpy as np
+import torch  
+import argparse
+import math
+import inspect
+import os
+from os.path import join 
+import re
+import yaml 
+import json  
+import pickle
+import sys
+if sys.platform == "win32":
+    import pathlib
+    pathlib.PosixPath = pathlib.WindowsPath
+from datetime import datetime 
+from collections.abc import Mapping, Iterable
+from dexmachina.asset_utils import get_rl_config_path 
+from dexmachina.envs.base_env import BaseEnv
+from dexmachina.envs.contacts import get_contact_marker_cfgs
+from dexmachina.envs.constructors import get_common_argparser, parse_clip_string  
+from dexmachina.rl.rl_games_wrapper import RlGamesVecEnvWrapper, RlGamesGpuEnv
+
+  
+from collections import defaultdict
+import shutil
+import moviepy
+from rl_games.common import env_configurations, vecenv
+from rl_games.common.algo_observer import IsaacAlgoObserver
+from rl_games.torch_runner import Runner
+
+# E:\IBS\dexmachina\inspire-example_box30-230-s01-u01_B8000_hybrid_thres0.6_ho16_imi0.3_con3.0_bc0.3\inspire-example_box30-230-s01-u01_B8000_hybrid_thres0.6_ho16_imi0.3_con3.0_bc0.3\nn\last_inspire_hand_ep_2500_rew__164.90117_.pth
+# python dexmachina/rl/eval_rl_games.py -B 1 --checkpoint E:\IBS\dexmachina\experiment\inspire-example_box30-230-s01-u01_B8000_hybrid_thres0.6_ho16_imi0.3_con3.0_bc0.3_ibs0.4\inspire-example_box30-230-s01-u01_B8000_hybrid_thres0.6_ho16_imi0.3_con3.0_bc0.3_ibs0.4\nn\last_inspire_hand_ep_2500_rew__167.37459_.pth -v 
+"""
+#
+$CK="E:\IBS\test319\inspire-test_mixer30-200-s01-u01_B12000_hybrid_thres0.5_ho16_imi0.2_con2.0_bc0.2_ibsbeta25.0\nn\last_inspire_hand_ep_4920_rew__137.01653_.pth"
+python dexmachina/rl/eval_rl_games.py -B 1 --checkpoint $CK -v --record_video"""
+
+pklpath= r"E:\IBS\test319\inspire-test_mixer30-200-s01-u01_B12000_hybrid_thres0.5_ho16_imi0.2_con2.0_bc0.2_ibsbeta25.0\params\env.pkl"
+def gather_object_state_tensor(demo_data):
+    """ demo data should already be sliced since it's loaded from env kwargs """
+    obj_pos = demo_data["obj_pos"]
+    obj_quat = demo_data["obj_quat"]
+    obj_arti = demo_data["obj_arti"] # need to reshape to (T, 1) instead of (T,)
+    if len(obj_arti.shape) == 1:
+        obj_arti = obj_arti[:, None]
+    arr = np.concatenate([obj_pos, obj_quat, obj_arti], axis=1)
+    return torch.tensor(arr).float()
+
+def eval_one_episode(env, agent, obj_state_tensor, print_rew=False, record_video=False, show_reference=False):
+    obs = env.reset() 
+    if isinstance(obs, dict):
+        obs = obs["obs"]
+    # required: enables the flag for batched observations
+    _ = agent.get_batch_size(obs, 1)
+    # initialize RNN states if used
+    if agent.is_rnn:
+        agent.init_rnn()
+    uenv = env.unwrapped
+    ep_len = uenv.max_episode_length
+    num_envs = uenv.num_envs
+    device = torch.device('cuda:0')
+    if record_video:
+        uenv.start_recording() 
+        uenv.max_video_frames = int(uenv.max_episode_length)
+        max_frames = uenv.max_video_frames   
+    
+    obj = None
+    if len(uenv.objects) > 0:
+        obj = uenv.objects[uenv.object_names[0]]
+        if obj.actuated:
+            print("Setting eval time obj gains to 0.0")
+            obj.set_joint_gains(0.0, 0.0, force_range=0.0)
+    assert obj is not None, "No object found in the environment"
+    left_hand = uenv.robots["left"]
+    right_hand = uenv.robots["right"]
+    joint_target_left = left_hand.residual_qpos
+    joint_target_right = right_hand.residual_qpos
+    
+    eval_data = defaultdict(list)
+    for i in range(ep_len):
+        with torch.inference_mode():
+            env_step = uenv.episode_length_buf.cpu().numpy()[0]
+            # get actions from the agent
+            actions = agent.get_action(obs, is_deterministic=True) 
+            demo_state = obj_state_tensor[env_step]
+                    
+            if show_reference: # visualize the demo traj and set zero action
+                obj.set_object_state(
+                    root_pos=state[:, :3][None],
+                    root_quat=state[:, 3:7][None],
+                    joint_qpos=state[:, 7][None],
+                    env_idxs=torch.tensor([1], dtype=torch.int32, device=device),
+                )
+                actions[-1, :] = -1.0 
+                for robot, joints in zip([left_hand, right_hand], [joint_target_left, joint_target_right]):
+                    robot.set_joint_position(
+                        joint_targets=joints[env_step][None],
+                        env_idxs=[1],
+                    ) 
+            obs, rew, dones, infos = env.step(actions) 
+            obj_pos, obj_quat, obj_arti = obj.root_pos, obj.root_quat, obj.dof_pos
+            # print(f"Step {env_step}: Obj pos: {obj_pos.cpu().numpy()}")
+            obj_state = torch.cat([obj_pos, obj_quat, obj_arti], dim=-1)
+            eval_data["obj_state"].append(obj_state.cpu().numpy())
+            eval_data["demo_state"].append(demo_state.cpu().numpy())
+
+            rew_dict = uenv.rew_dict
+            for key in ['pos_dist', 'rot_dist', 'arti_dist']:
+                eval_data[key].append(rew_dict[key].cpu().numpy())
+            if len(dones) > 0:
+                # reset rnn state for terminated episodes
+                if agent.is_rnn and agent.states is not None:
+                    for s in agent.states:
+                        s[:, dones, :] = 0.0 
+        
+        if print_rew:
+            print(f"Step {env_step}: Reward: {rew.cpu().numpy()}")
+            # perform operations for terminated episodes 
+            rew_dict = uenv.rew_dict
+            for k, v in rew_dict.items():
+                if 'con' in k:
+                    print(f"Step {env_step}: {k}: {v.cpu().numpy()}")
+    eval_data = {k: np.stack(v) for k, v in eval_data.items()}
+    frames = uenv.get_recorded_frames()
+    return frames, eval_data
+
+
+def main():
+
+    parser = get_common_argparser()
+    parser.add_argument('--checkpoint', '-ck', type=str, default="inspire_hand")
+    parser.add_argument('--eval_episodes', '-ne', type=int, default=1)
+    parser.add_argument('--print_rew', '-pr', action='store_true')
+    parser.add_argument('--show_reference', '-ref', action='store_true') # if not ture, don't show the retargeted reference
+    parser.add_argument('--output_render', '-or', action='store_true') # if not ture, don't show the retargeted reference
+    parser.add_argument('--render_dir', '-out', type=str, default="rendered") # if not provided, save in the same folder as the checkpoint
+    parser.add_argument('--video_fname', '-of', type=str, default="-eval.mp4") # if not provided, save in the same folder as the checkpoint
+    
+    args = parser.parse_args()
+    
+
+
+    ckpt_path = "/".join(args.checkpoint.split("/")[:-2])
+    saved_cfg_fname =pklpath
+    ckpt_name = f"{args.checkpoint.split('/')[-1]}" # inspire_ep1000 etc
+    run_name = os.path.basename(os.path.dirname(args.checkpoint))
+    # 保证没有多余空格
+    ckpt_data_folder = os.path.join(ckpt_path, ckpt_name.replace(".pth", "_eval")).strip()
+    os.makedirs(ckpt_data_folder, exist_ok=True)
+
+    video_fname = join(ckpt_data_folder, f"video.mp4")
+    if args.output_render:
+        render_dir = os.path.join(args.render_dir, run_name)
+        print('Saving video to a different folder')
+        video_fname = os.path.join(render_dir, ckpt_name.split(".")[0] + args.video_fname)
+        os.makedirs(render_dir, exist_ok=True)
+
+    assert os.path.exists(saved_cfg_fname), f"File {saved_cfg_fname} does not exist"
+    # load to pkl
+    print(f"Loading saved env config from {saved_cfg_fname}")
+    with open(saved_cfg_fname, "rb") as f:
+        env_kwargs = pickle.load(f)
+    print(env_kwargs['object_cfgs'])
+    env_kwargs['object_cfgs'] =  {'mixer': {'name': 'mixer', 'base_init_pos': [0.0, 0.0, 0.3], 'base_init_quat': [1.0, 0.0, 0.0, 0.0], 'base_init_qpos': [0.0], 'num_sample_vertics': 300, 'convexify': False, 'fixed': False, 'actuated': True, 'kp': 80.0, 'kv': 5.0, 'force_range': 50.0, 'collect_data': False, 'offset_pos': [0.0, 0.0, 0.0], 'color': None, 'show_link_frame': False, 'urdf_path': r'E:\IBS\dexmachina\dexmachina\assets\arctic\mixer\decomp\mixer_decomp.urdf', 'bottom_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\mixer\bottom_watertight_tiny.stl', 'top_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\mixer\top_watertight_tiny.stl'}}  
+
+
+
+
+
+    #{'mixer': {'name': 'mixer', 'base_init_pos': [0.0, 0.0, 0.3], 'base_init_quat': [1.0, 0.0, 0.0, 0.0], 'base_init_qpos': [0.0], 'num_sample_vertics': 300, 'convexify': False, 'fixed': False, 'actuated': True, 'kp': 80.0, 'kv': 5.0, 'force_range': 50.0, 'collect_data': False, 'offset_pos': [0.0, 0.0, 0.0], 'color': None, 'show_link_frame': False, 'urdf_path': r'E:\IBS\dexmachina\dexmachina\assets\arctic\mixer\decomp\mixer_decomp.urdf', 'bottom_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\mixer\bottom_watertight_tiny.stl', 'top_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\mixer\top_watertight_tiny.stl'}}  
+    #{'notebook': {'name': 'notebook', 'base_init_pos': [0.0, 0.0, 0.3], 'base_init_quat': [1.0, 0.0, 0.0, 0.0], 'base_init_qpos': [0.0], 'num_sample_vertics': 300, 'convexify': False, 'fixed': False, 'actuated': True, 'kp': 80.0, 'kv': 5.0, 'force_range': 50.0, 'collect_data': False, 'offset_pos': [0.0, 0.0, 0.0], 'color': None, 'show_link_frame': False, 'urdf_path': r'E:\IBS\dexmachina\dexmachina\assets\arctic\notebook\decomp\notebook_decomp.urdf', 'bottom_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\notebook\bottom_watertight_tiny.stl', 'top_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\notebook\top_watertight_tiny.stl'}}
+    #{'ketchup': {'name': 'ketchup', 'base_init_pos': [0.0, 0.0, 0.3], 'base_init_quat': [1.0, 0.0, 0.0, 0.0], 'base_init_qpos': [0.0], 'num_sample_vertics': 300, 'convexify': False, 'fixed': False, 'actuated': True, 'kp': 80.0, 'kv': 5.0, 'force_range': 50.0, 'collect_data': False, 'offset_pos': [0.0, 0.0, 0.0], 'color': None, 'show_link_frame': False, 'urdf_path': r'E:\IBS\dexmachina\dexmachina\assets\arctic\ketchup\decomp\ketchup_decomp.urdf', 'bottom_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\ketchup\bottom_watertight_tiny.stl', 'top_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\ketchup\top_watertight_tiny.stl'}}
+    #{'waffleiron': {'name': 'waffleiron', 'base_init_pos': [0.0, 0.0, 0.3], 'base_init_quat': [1.0, 0.0, 0.0, 0.0], 'base_init_qpos': [0.0], 'num_sample_vertics': 300, 'convexify': False, 'fixed': False, 'actuated': True, 'kp': 80.0, 'kv': 5.0, 'force_range': 50.0, 'collect_data': False, 'offset_pos': [0.0, 0.0, 0.0], 'color': None, 'show_link_frame': False, 'urdf_path': r'E:\IBS\dexmachina\dexmachina\assets\arctic\waffleiron\decomp\waffleiron_decomp.urdf', 'bottom_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\waffleiron\bottom_watertight_tiny.stl', 'top_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\waffleiron\top_watertight_tiny.stl'}}
+
+
+   
+    #{'mixer': {'name': 'mixer', 'base_init_pos': [0.0, 0.0, 0.3], 'base_init_quat': [1.0, 0.0, 0.0, 0.0], 'base_init_qpos': [0.0], 'num_sample_vertics': 300, 'convexify': False, 'fixed': False, 'actuated': True, 'kp': 80.0, 'kv': 5.0, 'force_range': 50.0, 'collect_data': False, 'offset_pos': [0.0, 0.0, 0.0], 'color': None, 'show_link_frame': False, 'urdf_path': r'E:\IBS\dexmachina\dexmachina\assets\arctic\mixer\decomp\mixer_decomp.urdf', 'bottom_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\mixer\bottom_watertight_tiny.stl', 'top_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\mixer\top_watertight_tiny.stl'}}   
+    
+    # {'box': {'name': 'box', 'base_init_pos': [0.0597, -0.2476, 1.0354], 'base_init_quat': [-0.6413, 0.2875, 0.6467, -0.2964], 'base_init_qpos': [0.0], 'num_sample_vertics': 300, 'convexify': False, 'fixed': False, 'actuated': True, 'kp': 80.0, 'kv': 5.0, 'force_range': 50.0, 'collect_data': False, 'offset_pos': [0.0, 0.0, 0.0], 'color': None, 'show_link_frame': False, 'urdf_path': r'E:\IBS\dexmachina\dexmachina\assets\arctic\box\decomp\box_decomp.urdf', 'bottom_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\box\bottom_watertight_tiny.stl', 'top_mesh_fname': r'E:\IBS\dexmachina\dexmachina\assets\arctic\box\top_watertight_tiny.stl'}}
+
+
+    
+    env_kwargs['robot_cfgs']['left']['urdf_path'] = r'E:\IBS\dexmachina\dexmachina\assets\inspire_hand\left_xyz_copy.urdf'
+    env_kwargs['robot_cfgs']['right']['urdf_path'] = r'E:\IBS\dexmachina\dexmachina\assets\inspire_hand\right_xyz_copy.urdf'
+
+
+    
+    
+    assert env_kwargs['env_cfg']['use_rl_games'], "The saved environment is not from rl-games"
+    
+    if args.raytrace and args.record_video:
+        env_kwargs['env_cfg']['scene_kwargs']['raytrace'] = True
+
+    env_kwargs['env_cfg']['early_reset_threshold'] = 0.0
+    print("WARNING: setting env.is_eval to True")
+    env_kwargs['env_cfg']['is_eval'] = True
+    if args.vis:
+        # NOTE still needs this because kwargs are loaded from saved env
+        env_kwargs['env_cfg']['scene_kwargs']['use_visualizer'] = True
+        env_kwargs['env_cfg']['scene_kwargs']['show_viewer'] = True
+    print("Not applying external forces during eval time")
+    env_kwargs['rand_cfg']['randomize'] = False 
+
+    if args.show_markers:
+        marker_cfgs = get_contact_marker_cfgs(
+                num_vis_contacts=16,
+                sources=['demo'],
+                obj_parts=['top', 'bottom'],
+                hand_sides=['left', 'right'],
+            )
+        env_kwargs['contact_marker_cfgs'] = marker_cfgs
+        print('Setting visualize contact to True but observe contact force to False')
+        env_kwargs['env_cfg']['scene_kwargs']['visualize_contact'] = True
+
+    env_kwargs['env_cfg']['num_envs'] = args.num_envs
+    env_kwargs['env_cfg']['rand_init_ratio'] = 0.0
+    if args.record_video:
+        env_kwargs['env_cfg']['scene_kwargs']['background_color'] = [1.0, 1.0, 1.0] 
+        env_kwargs['env_cfg']['scene_kwargs']['use_visualizer'] = True  
+        env_kwargs['env_cfg']['record_video'] = True 
+        print(f"Setting render resolution to 512") 
+        # env_kwargs['camera_res'] = (2048, 2048)
+        env_kwargs['env_cfg']['camera_kwargs']['front'] = dict(
+            res=(512, 512),
+            fov=40,
+            pos=(0.5, -1.5, 1.2),
+            lookat=(0.0, -1.58, 2.0),
+        ) 
+    for name, cfg in env_kwargs['object_cfgs'].items():
+        print("Setting eval time obj gains to 0.0")
+        cfg['actuated'] = False
+
+    print("demo_data :", env_kwargs['demo_data'].keys())
+    newdemo_data = {
+        'obj_pos': env_kwargs['demo_data']['obj_pos'],
+        'obj_quat': env_kwargs['demo_data']['obj_quat'],
+        'obj_arti': env_kwargs['demo_data']['obj_arti'],
+        "contact_links_left": env_kwargs['demo_data']['contact_links_left'],
+        "contact_links_right": env_kwargs['demo_data']['contact_links_right'],
+        "contact_links_valid_left": env_kwargs['demo_data']['contact_links_valid_left'],
+        "contact_links_valid_right": env_kwargs['demo_data']['contact_links_valid_right']
+    }
+    newdemo_data = recursively_to_tensor(newdemo_data)
+    env_kwargs['demo_data'] = newdemo_data
+    
+    print("✅ demo_data 已转换为 Tensor。")
+    # =========================================================
+    
+    env_kwargs['demo_data'] = newdemo_data
+    if args.overlay:
+        env_kwargs['env_cfg']['env_spacing'] = (0.0, 0.0)
+    print("Removing any curriculum config during eval")
+    env_kwargs.pop("curriculum_cfg") 
+    device = torch.device('cuda:0')
+    
+    # 设置随机种子以确保可重现性
+    import random
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(args.seed)
+        torch.cuda.manual_seed_all(args.seed)
+    
+    import genesis as gs
+    gs.init(backend=gs.gpu, logging_level='warning', seed=args.seed)
+
+    
+    env = BaseEnv(
+         **env_kwargs
+    )
+
+    obj_state_tensor = gather_object_state_tensor(env_kwargs['demo_data'])
+
+    agent_cfg_fname = get_rl_config_path("rl_games_ppo_cfg")
+    
+    with open(agent_cfg_fname, encoding="utf-8") as f:
+        agent_cfg = yaml.full_load(f)
+    rl_device = agent_cfg["params"]["config"]["device"]
+    clip_obs = agent_cfg["params"]["env"].get("clip_observations", math.inf)
+    clip_actions = agent_cfg["params"]["env"].get("clip_actions", math.inf)
+
+    env = RlGamesVecEnvWrapper(env, rl_device, clip_obs, clip_actions)
+    vecenv.register(
+        "IsaacRlgWrapper", lambda config_name, num_actors, **kwargs: RlGamesGpuEnv(config_name, num_actors, **kwargs)
+    )
+
+    uenv = env.unwrapped 
+    env_configurations.register("rlgpu", {"vecenv_type": "IsaacRlgWrapper", "env_creator": lambda **kwargs: env})
+    # set number of actors into agent config
+    agent_cfg["params"]["config"]["num_actors"] = uenv.num_envs
+
+    # create runner from rl-games
+    runner = Runner()
+    runner.load(agent_cfg)
+    # obtain the agent from the runner
+    agent: BasePlayer = runner.create_player()
+    resume_path = os.path.abspath(args.checkpoint) 
+    agent.restore(resume_path)
+    agent.reset()
+
+    for eps in range(args.eval_episodes):
+        frames, eval_data = eval_one_episode(
+            env, agent, obj_state_tensor, args.print_rew, args.record_video, args.show_reference
+        )
+        # 拼接时确保没有多余空格
+        ckpt_eval_fname = os.path.join(ckpt_data_folder, f"eval_ep{eps}.npy").strip()
+        np.save(ckpt_eval_fname, eval_data)
+        print(f"Saved eval data to {ckpt_eval_fname}")
+        # try loading the data
+        # eval_data = np.load(ckpt_eval_fname, allow_pickle=True).item() 
+        if args.record_video: 
+            # save video with moviepy
+            from moviepy import ImageSequenceClip
+            clip = ImageSequenceClip(frames, fps=int(1/uenv.dt/2))
+            clip.write_videofile(video_fname)
+            print(f"Saved video to {video_fname}")
+    
+    print("Done evaluating")
+
+def recursively_to_tensor(data):
+    """递归地将列表/元组和字典中的数值数据转换为 torch.Tensor。"""
+    
+    if isinstance(data, torch.Tensor):
+        return data # 已经是 Tensor
+    
+    if isinstance(data, np.ndarray):
+        # 从 NumPy 数组创建 Tensor
+        return torch.as_tensor(data)
+
+    if isinstance(data, Mapping):
+        # 字典：递归处理所有值
+        return {key: recursively_to_tensor(value) for key, value in data.items()}
+    
+    if isinstance(data, (list, tuple)):
+        # 列表/元组：尝试直接创建 Tensor
+        try:
+            # 这是一个关键步骤，它解决了列表没有 .shape 的问题
+            return torch.as_tensor(data)
+        except:
+            # 如果失败（例如列表元素类型不一致），则递归处理元素
+            new_data = [recursively_to_tensor(item) for item in data]
+            # 保持原结构类型（列表或元组）
+            return tuple(new_data) if isinstance(data, tuple) else new_data
+    
+    # 其他类型（str, int, float, bool 等），直接返回
+    return data
+
+if __name__ == '__main__':
+    main()
+

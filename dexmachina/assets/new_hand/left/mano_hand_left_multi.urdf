@@ -1,0 +1,397 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot name="mano_hand">
+  <link name="hand">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\hand.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\hand.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_1">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_1.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_1.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_2">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_2.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_2.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_3">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_3.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_3.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_4">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_4.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_4.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_5">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_5.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_5.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_6">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_6.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_6.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_7">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_7.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_7.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_8">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_8.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_8.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_9">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_9.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_9.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_10">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_10.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_10.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_11">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_11.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_11.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_12">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_12.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_12.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_13">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_13.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_13.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_14">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_14.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_14.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <link name="link_joint_15">
+    <inertial>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="1e-06" ixy="0" ixz="0" iyy="1e-06" iyz="0" izz="1e-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_15.stl"  />
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="meshes\link_joint_15.stl"  />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint_hand_to_link_joint_1" type="revolute">
+    <parent link="hand" />
+    <child link="link_joint_1" />
+    <origin xyz="0.051664 0.023198 0.042563" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_2" type="revolute">
+    <parent link="link_joint_1" />
+    <child link="link_joint_2" />
+    <origin xyz="0.018934 0.013727 0.002262" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_3" type="revolute">
+    <parent link="link_joint_2" />
+    <child link="link_joint_3" />
+    <origin xyz="0.023655 0.006995 0.003565" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_4" type="revolute">
+    <parent link="hand" />
+    <child link="link_joint_4" />
+    <origin xyz="0.070767 0.019920 0.013105" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_5" type="revolute">
+    <parent link="link_joint_4" />
+    <child link="link_joint_5" />
+    <origin xyz="0.028320 0.004821 -0.000130" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_6" type="revolute">
+    <parent link="link_joint_5" />
+    <child link="link_joint_6" />
+    <origin xyz="0.021303 -0.006496 -0.004426" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_7" type="revolute">
+    <parent link="hand" />
+    <child link="link_joint_7" />
+    <origin xyz="0.052688 0.004887 -0.032527" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_8" type="revolute">
+    <parent link="link_joint_7" />
+    <child link="link_joint_8" />
+    <origin xyz="0.018858 0.009039 -0.002229" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_9" type="revolute">
+    <parent link="link_joint_8" />
+    <child link="link_joint_9" />
+    <origin xyz="0.019724 0.006842 -0.001372" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_10" type="revolute">
+    <parent link="hand" />
+    <child link="link_joint_10" />
+    <origin xyz="0.058972 0.018716 -0.005755" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_11" type="revolute">
+    <parent link="link_joint_10" />
+    <child link="link_joint_11" />
+    <origin xyz="0.024644 0.011442 0.001914" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_12" type="revolute">
+    <parent link="link_joint_11" />
+    <child link="link_joint_12" />
+    <origin xyz="0.022394 0.012508 0.004953" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_13" type="revolute">
+    <parent link="hand" />
+    <child link="link_joint_13" />
+    <origin xyz="-0.016786 -0.033837 0.020339" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_14" type="revolute">
+    <parent link="link_joint_13" />
+    <child link="link_joint_14" />
+    <origin xyz="0.019242 -0.008807 0.014586" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+  <joint name="joint_hand_to_link_joint_15" type="revolute">
+    <parent link="link_joint_14" />
+    <child link="link_joint_15" />
+    <origin xyz="0.014865 -0.008133 0.027492" rpy="0 0 0" />
+    <axis xyz="0 0 1" />
+  <limit lower="-0.1" upper="0.1" effort="50" velocity="0.1" /></joint>
+</robot>

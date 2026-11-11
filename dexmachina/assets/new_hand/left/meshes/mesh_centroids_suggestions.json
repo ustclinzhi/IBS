@@ -1,0 +1,439 @@
+{
+  "hand.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\hand.stl",
+    "centroid": [
+      -61.442548619273055,
+      11.015041947340325,
+      12.766883459087332
+    ],
+    "bbox_centroid": [
+      -59.84644770622253,
+      10.810729026794435,
+      16.941983222961426
+    ],
+    "suggested_origin_centroid": [
+      61.442549,
+      -11.015042,
+      -12.766883
+    ],
+    "suggested_origin_bbox_centroid": [
+      59.846448,
+      -10.810729,
+      -16.941983
+    ]
+  },
+  "link_joint_0.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_0.stl",
+    "centroid": [
+      -61.442548619273055,
+      11.015041947340325,
+      12.766883459087332
+    ],
+    "bbox_centroid": [
+      -59.84644770622253,
+      10.810729026794435,
+      16.941983222961426
+    ],
+    "suggested_origin_centroid": [
+      61.442549,
+      -11.015042,
+      -12.766883
+    ],
+    "suggested_origin_bbox_centroid": [
+      59.846448,
+      -10.810729,
+      -16.941983
+    ]
+  },
+  "link_joint_1.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_1.stl",
+    "centroid": [
+      -9.779045688767944,
+      34.21273750798919,
+      55.329997024943296
+    ],
+    "bbox_centroid": [
+      -9.12505030632019,
+      32.60196876525879,
+      55.185489654541016
+    ],
+    "suggested_origin_centroid": [
+      9.779046,
+      -34.212738,
+      -55.329997
+    ],
+    "suggested_origin_bbox_centroid": [
+      9.12505,
+      -32.601969,
+      -55.18549
+    ]
+  },
+  "link_joint_10.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_10.stl",
+    "centroid": [
+      -2.470678489958301,
+      29.7305408688232,
+      7.011448441896069
+    ],
+    "bbox_centroid": [
+      -2.3106036186218257,
+      28.52965545654297,
+      7.367482662200928
+    ],
+    "suggested_origin_centroid": [
+      2.470678,
+      -29.730541,
+      -7.011448
+    ],
+    "suggested_origin_bbox_centroid": [
+      2.310604,
+      -28.529655,
+      -7.367483
+    ]
+  },
+  "link_joint_11.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_11.stl",
+    "centroid": [
+      22.17289506035511,
+      41.17218429064356,
+      8.925574555113306
+    ],
+    "bbox_centroid": [
+      22.004289388656613,
+      41.08808898925781,
+      7.985274136066435
+    ],
+    "suggested_origin_centroid": [
+      -22.172895,
+      -41.172184,
+      -8.925575
+    ],
+    "suggested_origin_bbox_centroid": [
+      -22.004289,
+      -41.088089,
+      -7.985274
+    ]
+  },
+  "link_joint_12.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_12.stl",
+    "centroid": [
+      44.56669943343007,
+      53.67992683109584,
+      13.878133486374427
+    ],
+    "bbox_centroid": [
+      43.7716121673584,
+      51.89611053466796,
+      13.078592777252195
+    ],
+    "suggested_origin_centroid": [
+      -44.566699,
+      -53.679927,
+      -13.878133
+    ],
+    "suggested_origin_bbox_centroid": [
+      -43.771612,
+      -51.896111,
+      -13.078593
+    ]
+  },
+  "link_joint_13.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_13.stl",
+    "centroid": [
+      -78.2281994869838,
+      -22.82168667750121,
+      33.10631632905978
+    ],
+    "bbox_centroid": [
+      -74.96141433715822,
+      -21.332010030746456,
+      36.534958839416504
+    ],
+    "suggested_origin_centroid": [
+      78.228199,
+      22.821687,
+      -33.106316
+    ],
+    "suggested_origin_bbox_centroid": [
+      74.961414,
+      21.33201,
+      -36.534959
+    ]
+  },
+  "link_joint_14.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_14.stl",
+    "centroid": [
+      -58.98596244307053,
+      -31.628733536983802,
+      47.692642174426
+    ],
+    "bbox_centroid": [
+      -59.795761108398445,
+      -31.143123626708984,
+      48.99919128417969
+    ],
+    "suggested_origin_centroid": [
+      58.985962,
+      31.628734,
+      -47.692642
+    ],
+    "suggested_origin_bbox_centroid": [
+      59.795761,
+      31.143124,
+      -48.999191
+    ]
+  },
+  "link_joint_15.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_15.stl",
+    "centroid": [
+      -44.12111273343489,
+      -39.76212546923444,
+      75.18509719823278
+    ],
+    "bbox_centroid": [
+      -47.7607421875,
+      -38.46728992462158,
+      74.37325859069826
+    ],
+    "suggested_origin_centroid": [
+      44.121113,
+      39.762125,
+      -75.185097
+    ],
+    "suggested_origin_bbox_centroid": [
+      47.760742,
+      38.46729,
+      -74.373259
+    ]
+  },
+  "link_joint_2.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_2.stl",
+    "centroid": [
+      9.155063490846885,
+      47.93985913250439,
+      57.591715207444445
+    ],
+    "bbox_centroid": [
+      8.083230257034302,
+      46.90290832519531,
+      56.95597267150879
+    ],
+    "suggested_origin_centroid": [
+      -9.155063,
+      -47.939859,
+      -57.591715
+    ],
+    "suggested_origin_bbox_centroid": [
+      -8.08323,
+      -46.902908,
+      -56.955973
+    ]
+  },
+  "link_joint_3.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_3.stl",
+    "centroid": [
+      32.80960931580422,
+      54.93438649016742,
+      61.15705740452745
+    ],
+    "bbox_centroid": [
+      31.212889671325684,
+      53.63238716125488,
+      60.0700569152832
+    ],
+    "suggested_origin_centroid": [
+      -32.809609,
+      -54.934386,
+      -61.157057
+    ],
+    "suggested_origin_bbox_centroid": [
+      -31.21289,
+      -53.632387,
+      -60.070057
+    ]
+  },
+  "link_joint_4.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_4.stl",
+    "centroid": [
+      9.324503479569653,
+      30.93471584206363,
+      25.871561298870184
+    ],
+    "bbox_centroid": [
+      5.365135669708251,
+      30.5510950088501,
+      26.981948852539066
+    ],
+    "suggested_origin_centroid": [
+      -9.324503,
+      -30.934716,
+      -25.871561
+    ],
+    "suggested_origin_bbox_centroid": [
+      -5.365136,
+      -30.551095,
+      -26.981949
+    ]
+  },
+  "link_joint_5.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_5.stl",
+    "centroid": [
+      37.64485844348872,
+      35.755605594684,
+      25.741824393967804
+    ],
+    "bbox_centroid": [
+      37.27036952972412,
+      35.477149963378906,
+      25.666718006134033
+    ],
+    "suggested_origin_centroid": [
+      -37.644858,
+      -35.755606,
+      -25.741824
+    ],
+    "suggested_origin_bbox_centroid": [
+      -37.27037,
+      -35.47715,
+      -25.666718
+    ]
+  },
+  "link_joint_6.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_6.stl",
+    "centroid": [
+      58.94739368145275,
+      29.259420852144217,
+      21.316042037344236
+    ],
+    "bbox_centroid": [
+      58.04477691650389,
+      31.88994693756103,
+      22.96713447570801
+    ],
+    "suggested_origin_centroid": [
+      -58.947394,
+      -29.259421,
+      -21.316042
+    ],
+    "suggested_origin_bbox_centroid": [
+      -58.044777,
+      -31.889947,
+      -22.967134
+    ]
+  },
+  "link_joint_7.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_7.stl",
+    "centroid": [
+      -8.75465577720826,
+      15.901680005617948,
+      -19.759889512941726
+    ],
+    "bbox_centroid": [
+      -8.33291530609131,
+      15.24373984336853,
+      -18.517436504364014
+    ],
+    "suggested_origin_centroid": [
+      8.754656,
+      -15.90168,
+      19.75989
+    ],
+    "suggested_origin_bbox_centroid": [
+      8.332915,
+      -15.24374,
+      18.517437
+    ]
+  },
+  "link_joint_8.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_8.stl",
+    "centroid": [
+      10.103611065197097,
+      24.940306505298047,
+      -21.989365291442464
+    ],
+    "bbox_centroid": [
+      9.1237176656723,
+      24.306970596313473,
+      -22.013539314270012
+    ],
+    "suggested_origin_centroid": [
+      -10.103611,
+      -24.940307,
+      21.989365
+    ],
+    "suggested_origin_bbox_centroid": [
+      -9.123718,
+      -24.306971,
+      22.013539
+    ]
+  },
+  "link_joint_9.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\link_joint_9.stl",
+    "centroid": [
+      29.827504364129474,
+      31.782397454183958,
+      -23.361080498743597
+    ],
+    "bbox_centroid": [
+      29.128886222839355,
+      30.845837593078613,
+      -22.847223281860355
+    ],
+    "suggested_origin_centroid": [
+      -29.827504,
+      -31.782397,
+      23.36108
+    ],
+    "suggested_origin_bbox_centroid": [
+      -29.128886,
+      -30.845838,
+      22.847223
+    ]
+  },
+  "mano_hand_left_left.obj": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\mano_hand_left_left.obj",
+    "centroid": [
+      -30.06905200858129,
+      14.387659702183953,
+      22.13618899790257
+    ],
+    "bbox_centroid": [
+      -21.916973114999998,
+      6.414566039999999,
+      31.121710775000004
+    ],
+    "suggested_origin_centroid": [
+      30.069052,
+      -14.38766,
+      -22.136189
+    ],
+    "suggested_origin_bbox_centroid": [
+      21.916973,
+      -6.414566,
+      -31.121711
+    ]
+  },
+  "mano_hand_left_left.stl": {
+    "file": "e:\\IBS\\dexmachina\\dexmachina\\assets\\new_hand\\left\\meshes\\mano_hand_left_left.stl",
+    "centroid": [
+      -30.069052008573635,
+      14.387659701851943,
+      22.136188998042243
+    ],
+    "bbox_centroid": [
+      -21.916973114013672,
+      6.414566040039063,
+      31.121710777282722
+    ],
+    "suggested_origin_centroid": [
+      30.069052,
+      -14.38766,
+      -22.136189
+    ],
+    "suggested_origin_bbox_centroid": [
+      21.916973,
+      -6.414566,
+      -31.121711
+    ]
+  }
+}

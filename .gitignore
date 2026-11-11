@@ -1,0 +1,139 @@
+# ============================================================================
+#  IBS-DexMachina  .gitignore
+#  目标：只托管「源码 + 配置 + 小型资源」，数据 / 权重 / 日志 / 视频一律不入库。
+#  上游：DexMachina (Zhao Mandi et al., arXiv 2505.24853)
+# ============================================================================
+
+# ---------------------------------------------------------------------------
+# 1. 第三方大型依赖（按官方 README 自行安装，不入库）
+# ---------------------------------------------------------------------------
+/Genesis/
+/dexmachina/Genesis/
+/dexmachina/Genesis.zip
+/rl_games/
+/pytorch3d/
+/moviepy/
+/Pointnet_Pointnet2_pytorch-master/
+/Pointnet_Pointnet2_pytorch-master.zip
+/arctic/
+
+# ---------------------------------------------------------------------------
+# 2. 实验产物与权重
+# ---------------------------------------------------------------------------
+/experiment/
+/dexmachinatest/
+/dexmachinatest12.22/
+/inspire-example_*/
+/nn/
+**/nn/
+*.pth
+*.pt
+*.pkl
+*.ckpt
+*.zip
+/latest-run/
+/latest-run.zip
+/offline-run-*/
+/wandb/
+/wandb1/
+/wandb2/
+/logs/
+/rendered/
+*.wandb
+
+# ---------------------------------------------------------------------------
+# 3. 生成的中间数据（点云 / 关键点 / IBS / 网格导出）
+# ---------------------------------------------------------------------------
+*.npy
+*.npz
+/kpts_save/
+/kpts_obj_save/
+/demo_kpts_save_l/
+/curruentlkptl/
+/curruentrobotpoint/
+/robot_point_clouds/
+/output_point_clouds_obj/
+/exported_mesh/
+/exported_hand_meshes/
+/exported_hand_meshes_right/
+/exported_hand_meshes_zero/
+/dexmachina/exported_hand_meshes/
+/dexmachina/exported_hand_meshes_right/
+/dexmachina/exported_hand_meshes_zero/
+/dexmachina/left_kpt_data.*
+/dexmachina/right_kpt_data.*
+/dexmachina/hand_proc/retargeted/
+
+# ---------------------------------------------------------------------------
+# 4. ARCTIC 数据与 MANO / SMPL-X 相关模型
+#    这些资源受各自许可证约束，不随本仓库分发。
+#    （对应 asset 请按官方流程获取：https://github.com/zc-alexfan/arctic）
+# ---------------------------------------------------------------------------
+arctic/data/
+arctic/downloads/
+**/body_models/
+**/mano/
+**/smplx/
+**/*mano*.pkl
+**/*MANO*.pkl
+**/smplx/**/*.npz
+/dexmachina/assets/arctic/
+
+# ---------------------------------------------------------------------------
+# 5. 媒体与临时文件
+# ---------------------------------------------------------------------------
+*.mp4
+*.gif
+*.wav
+*.obj.bak
+/12.1批量测试视频/
+/单帧mano与机械手对比/
+/meshlab截图/
+/dexmachina/video.mp4
+profile_output.txt
+traintime.txt
+env.pkl
+box_use_01_vector_para.pt
+dexmachina-teaser-website.png
+
+# ---------------------------------------------------------------------------
+# 6. Python / 编辑器 / 系统
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+ENV/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

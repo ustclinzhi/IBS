@@ -1,0 +1,20 @@
+low_pass_alpha: 0.6
+scaling_factor: 1.2
+left:
+  urdf_path: rhand_mano_low_mass.urdf
+  target_origin_link: "right_wrist_rz"
+  human_origin_idx: 0  
+  target_finger_links: [ "right_thumb3_z",  "right_index3_z", "link_joint_6", "link_joint_12", "link_joint_9"]
+  human_finger_idxs: [16, 17, 18, 19, 20]  
+  target_joint_names: ["joint_hand_to_link_joint_13", "joint_hand_to_link_joint_1", "joint_hand_to_link_joint_4", "joint_hand_to_link_joint_10", "joint_hand_to_link_joint_7", 'L_forearm_tx_link_joint', 'L_forearm_ty_link_joint', 'L_forearm_tz_link_joint', 'L_forearm_roll_link_joint', 'L_forearm_pitch_link_joint', 'L_forearm_yaw_link_joint']
+  wrist_body: "hand"
+
+right:
+  urdf_path: mano_hand_right_6dof.urdf
+  target_origin_link: "hand"
+  human_origin_idx: 0  
+  target_finger_links: [ "link_joint_15",  "link_joint_3", "link_joint_6", "link_joint_12", "link_joint_9"]
+  human_finger_idxs: [16, 17, 18, 19, 20]  
+  target_joint_names: ["joint_hand_to_link_joint_13", "joint_hand_to_link_joint_1", "joint_hand_to_link_joint_4", "joint_hand_to_link_joint_10", "joint_hand_to_link_joint_7", 'L_forearm_tx_link_joint', 'L_forearm_ty_link_joint', 'L_forearm_tz_link_joint', 'L_forearm_roll_link_joint', 'L_forearm_pitch_link_joint', 'L_forearm_yaw_link_joint']
+  wrist_body: "hand"
+ 

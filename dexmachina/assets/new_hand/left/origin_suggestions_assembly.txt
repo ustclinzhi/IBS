@@ -1,0 +1,210 @@
+<!-- joint joint_hand_to_link_joint_1 -->
+<joint name="joint_hand_to_link_joint_1" type="revolute">
+  <parent link="hand"/>
+  <child link="link_joint_1"/>
+  <origin xyz="0.051664 0.023198 0.042563" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_1 -->
+<link name="link_joint_1">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="-0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_2 -->
+<joint name="joint_hand_to_link_joint_2" type="revolute">
+  <parent link="link_joint_1"/>
+  <child link="link_joint_2"/>
+  <origin xyz="0.018934 0.013727 0.002262" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_2 -->
+<link name="link_joint_2">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_3 -->
+<joint name="joint_hand_to_link_joint_3" type="revolute">
+  <parent link="link_joint_2"/>
+  <child link="link_joint_3"/>
+  <origin xyz="0.023655 0.006995 0.003565" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_3 -->
+<link name="link_joint_3">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_4 -->
+<joint name="joint_hand_to_link_joint_4" type="revolute">
+  <parent link="hand"/>
+  <child link="link_joint_4"/>
+  <origin xyz="0.070767 0.019920 0.013105" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_4 -->
+<link name="link_joint_4">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_5 -->
+<joint name="joint_hand_to_link_joint_5" type="revolute">
+  <parent link="link_joint_4"/>
+  <child link="link_joint_5"/>
+  <origin xyz="0.028320 0.004821 -0.000130" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_5 -->
+<link name="link_joint_5">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_6 -->
+<joint name="joint_hand_to_link_joint_6" type="revolute">
+  <parent link="link_joint_5"/>
+  <child link="link_joint_6"/>
+  <origin xyz="0.021303 -0.006496 -0.004426" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_6 -->
+<link name="link_joint_6">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_7 -->
+<joint name="joint_hand_to_link_joint_7" type="revolute">
+  <parent link="hand"/>
+  <child link="link_joint_7"/>
+  <origin xyz="0.052688 0.004887 -0.032527" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_7 -->
+<link name="link_joint_7">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_8 -->
+<joint name="joint_hand_to_link_joint_8" type="revolute">
+  <parent link="link_joint_7"/>
+  <child link="link_joint_8"/>
+  <origin xyz="0.018858 0.009039 -0.002229" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_8 -->
+<link name="link_joint_8">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_9 -->
+<joint name="joint_hand_to_link_joint_9" type="revolute">
+  <parent link="link_joint_8"/>
+  <child link="link_joint_9"/>
+  <origin xyz="0.019724 0.006842 -0.001372" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_9 -->
+<link name="link_joint_9">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_10 -->
+<joint name="joint_hand_to_link_joint_10" type="revolute">
+  <parent link="hand"/>
+  <child link="link_joint_10"/>
+  <origin xyz="0.058972 0.018716 -0.005755" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_10 -->
+<link name="link_joint_10">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_11 -->
+<joint name="joint_hand_to_link_joint_11" type="revolute">
+  <parent link="link_joint_10"/>
+  <child link="link_joint_11"/>
+  <origin xyz="0.024644 0.011442 0.001914" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_11 -->
+<link name="link_joint_11">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_12 -->
+<joint name="joint_hand_to_link_joint_12" type="revolute">
+  <parent link="link_joint_11"/>
+  <child link="link_joint_12"/>
+  <origin xyz="0.022394 0.012508 0.004953" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_12 -->
+<link name="link_joint_12">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_13 -->
+<joint name="joint_hand_to_link_joint_13" type="revolute">
+  <parent link="hand"/>
+  <child link="link_joint_13"/>
+  <origin xyz="-0.016786 -0.033837 0.020339" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_13 -->
+<link name="link_joint_13">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_14 -->
+<joint name="joint_hand_to_link_joint_14" type="revolute">
+  <parent link="link_joint_13"/>
+  <child link="link_joint_14"/>
+  <origin xyz="0.019242 -0.008807 0.014586" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_14 -->
+<link name="link_joint_14">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+
+<!-- joint joint_hand_to_link_joint_15 -->
+<joint name="joint_hand_to_link_joint_15" type="revolute">
+  <parent link="link_joint_14"/>
+  <child link="link_joint_15"/>
+  <origin xyz="0.014865 -0.008133 0.027492" rpy="0 0 0"/>
+  <axis xyz="0 0 1"/>
+</joint>
+
+<!-- visual/inertial for link link_joint_15 -->
+<link name="link_joint_15">
+  <!-- suggested visual/collision/inertial origin (rpy=0) -->
+  <origin xyz="0.000000 0.000000 0.000000" rpy="0 0 0" />
+</link>
+

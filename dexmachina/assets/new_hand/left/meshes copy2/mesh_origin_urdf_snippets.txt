@@ -1,0 +1,284 @@
+<!-- visual snippet for hand.stl -->
+<visual>
+  <origin xyz="61.442549 -11.015042 -12.766883" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/hand.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="61.442549 -11.015042 -12.766883" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/hand.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_0.stl -->
+<visual>
+  <origin xyz="61.442549 -11.015042 -12.766883" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_0.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="61.442549 -11.015042 -12.766883" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_0.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_1.stl -->
+<visual>
+  <origin xyz="9.779046 -34.212738 -55.329997" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_1.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="9.779046 -34.212738 -55.329997" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_1.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_10.stl -->
+<visual>
+  <origin xyz="2.470678 -29.730541 -7.011448" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_10.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="2.470678 -29.730541 -7.011448" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_10.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_11.stl -->
+<visual>
+  <origin xyz="-22.172895 -41.172184 -8.925575" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_11.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="-22.172895 -41.172184 -8.925575" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_11.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_12.stl -->
+<visual>
+  <origin xyz="-44.566699 -53.679927 -13.878133" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_12.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="-44.566699 -53.679927 -13.878133" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_12.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_13.stl -->
+<visual>
+  <origin xyz="78.228199 22.821687 -33.106316" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_13.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="78.228199 22.821687 -33.106316" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_13.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_14.stl -->
+<visual>
+  <origin xyz="58.985962 31.628734 -47.692642" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_14.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="58.985962 31.628734 -47.692642" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_14.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_15.stl -->
+<visual>
+  <origin xyz="44.121113 39.762125 -75.185097" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_15.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="44.121113 39.762125 -75.185097" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_15.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_2.stl -->
+<visual>
+  <origin xyz="-9.155063 -47.939859 -57.591715" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_2.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="-9.155063 -47.939859 -57.591715" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_2.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_3.stl -->
+<visual>
+  <origin xyz="-32.809609 -54.934386 -61.157057" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_3.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="-32.809609 -54.934386 -61.157057" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_3.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_4.stl -->
+<visual>
+  <origin xyz="-9.324503 -30.934716 -25.871561" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_4.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="-9.324503 -30.934716 -25.871561" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_4.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_5.stl -->
+<visual>
+  <origin xyz="-37.644858 -35.755606 -25.741824" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_5.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="-37.644858 -35.755606 -25.741824" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_5.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_6.stl -->
+<visual>
+  <origin xyz="-58.947394 -29.259421 -21.316042" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_6.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="-58.947394 -29.259421 -21.316042" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_6.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_7.stl -->
+<visual>
+  <origin xyz="8.754656 -15.901680 19.759890" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_7.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="8.754656 -15.901680 19.759890" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_7.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_8.stl -->
+<visual>
+  <origin xyz="-10.103611 -24.940307 21.989365" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_8.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="-10.103611 -24.940307 21.989365" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_8.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for link_joint_9.stl -->
+<visual>
+  <origin xyz="-29.827504 -31.782397 23.361080" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_9.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="-29.827504 -31.782397 23.361080" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/link_joint_9.stl" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for mano_hand_left_left.obj -->
+<visual>
+  <origin xyz="30.069052 -14.387660 -22.136189" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/mano_hand_left_left.obj" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="30.069052 -14.387660 -22.136189" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/mano_hand_left_left.obj" />
+  </geometry>
+</collision>
+
+
+<!-- visual snippet for mano_hand_left_left.stl -->
+<visual>
+  <origin xyz="30.069052 -14.387660 -22.136189" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/mano_hand_left_left.stl" />
+  </geometry>
+</visual>
+<collision>
+  <origin xyz="30.069052 -14.387660 -22.136189" rpy="0 0 0"/>
+  <geometry>
+    <mesh filename="meshes/mano_hand_left_left.stl" />
+  </geometry>
+</collision>
+
